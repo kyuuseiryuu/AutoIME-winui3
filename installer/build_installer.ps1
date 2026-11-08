@@ -71,3 +71,4 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "`n[ERROR] Inno Setup compilation failed with exit code $LASTEXITCODE." -ForegroundColor Red
     exit $LASTEXITCODE
 }
+

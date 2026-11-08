@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- Brand & Version -->
+            <!-- Brand -->
             <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                 <FontIcon Glyph="&#xE765;" FontSize="18" Foreground="{ThemeResource AccentFillColorDefaultBrush}" />
                 <TextBlock x:Name="TxtAppTitle"
@@ -46,15 +46,6 @@
                            FontWeight="SemiBold"
                            FontSize="14"
                            VerticalAlignment="Center" />
-                <Border Background="{ThemeResource SubtleFillColorSecondaryBrush}"
-                        Padding="8,2"
-                        CornerRadius="10"
-                        VerticalAlignment="Center">
-                    <TextBlock Text="v2.0"
-                               FontSize="11"
-                               FontWeight="SemiBold"
-                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                </Border>
             </StackPanel>
 
             <!-- Drag region in center -->

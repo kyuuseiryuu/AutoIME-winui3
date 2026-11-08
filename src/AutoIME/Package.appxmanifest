@@ -18,7 +18,7 @@
 
   <Properties>
     <DisplayName>AutoIME</DisplayName>
-    <PublisherDisplayName>AutoIME</PublisherDisplayName>
+    <PublisherDisplayName>邱成龍</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <uap10:PackageIntegrity>
       <uap10:Content Enforcement="on"/>

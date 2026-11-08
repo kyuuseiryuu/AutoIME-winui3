@@ -14,7 +14,16 @@ Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "  AutoIME MSIX Package Builder" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 
+# Clean previous build artifacts
+$appPackagesDir = "$ProjectRoot\src\AutoIME\AppPackages"
+if (Test-Path $appPackagesDir) {
+    Remove-Item -Recurse -Force $appPackagesDir -ErrorAction SilentlyContinue
+}
+
 $OutDir = "$ProjectRoot\dist-msix"
+if (Test-Path $OutDir) {
+    Remove-Item -Recurse -Force "$OutDir\*" -ErrorAction SilentlyContinue
+}
 New-Item -ItemType Directory -Path $OutDir -Force | Out-Null
 
 Write-Host "`n[1/2] Compiling and packaging MSIX ($Configuration $Platform)..." -ForegroundColor Yellow

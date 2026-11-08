@@ -3,6 +3,7 @@ bin/
 obj/
 dist/
 dist-installer/
+dist-msix/
 publish/
 *.user
 *.suo

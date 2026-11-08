@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
@@ -10,15 +10,15 @@
   IgnorableNamespaces="uap uap10 rescap systemai">
 
   <Identity
-    Name="C7BBFCEE-38ED-4E30-AD5D-10B31455BC49"
-    Publisher="CN=AppPublisher"
-    Version="1.0.0.0" />
+    Name="AutoIME"
+    Publisher="CN=AutoIME"
+    Version="2.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="C7BBFCEE-38ED-4E30-AD5D-10B31455BC49" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>AutoIME</DisplayName>
-    <PublisherDisplayName>AppPublisher</PublisherDisplayName>
+    <PublisherDisplayName>AutoIME</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <uap10:PackageIntegrity>
       <uap10:Content Enforcement="on"/>

@@ -60,19 +60,37 @@ jobs:
           Compress-Archive -Path "./dist\*" -DestinationPath $zipName -Force
           Write-Host "Created release archive: $zipName"
 
-      - name: Build Inno Setup Installer
+      - name: Build Inno Setup Installer (Setup.exe)
         shell: pwsh
         run: |
           choco install innosetup -y --no-progress
           & "C:\Program Files (x86)\Inno Setup 6\iscc.exe" "installer/AutoIME.iss"
 
+      - name: Build MSIX Store Package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path "dist-msix" -Force
+          dotnet publish src/AutoIME/AutoIME.csproj `
+            -c Release `
+            -r win-x64 `
+            -p:WindowsPackageType=MSIX `
+            -p:EnableMsixTooling=true `
+            -p:GenerateAppxPackageOnBuild=true `
+            -p:AppxPackageSigningEnabled=false `
+            -p:EnableDefaultPriItems=false `
+            -o "./dist-msix/_temp"
+          
+          Get-ChildItem -Path "src/AutoIME/AppPackages" -Recurse | Where-Object { $_.Extension -match "^\.(msix|msixbundle)$" } | Copy-Item -Destination "dist-msix" -Force
+          Remove-Item -Recurse -Force "dist-msix/_temp" -ErrorAction SilentlyContinue
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: AutoIME-${{ steps.vars.outputs.sha_short }}-win-x64
+          name: AutoIME-${{ steps.vars.outputs.sha_short }}-packages
           path: |
             AutoIME-*-win-x64.zip
             dist-installer/AutoIME_Setup_*.exe
+            dist-msix/*.msix*
 
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
@@ -85,4 +103,5 @@ jobs:
           files: |
             AutoIME-*-win-x64.zip
             dist-installer/AutoIME_Setup_*.exe
+            dist-msix/*.msix*
 

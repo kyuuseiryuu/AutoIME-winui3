@@ -1,9 +1,6 @@
 {
   "profiles": {
-    "AutoIME (Package)": {
-      "commandName": "MsixPackage"
-    },
-    "AutoIME (Unpackaged)": {
+    "AutoIME": {
       "commandName": "Project"
     }
   }

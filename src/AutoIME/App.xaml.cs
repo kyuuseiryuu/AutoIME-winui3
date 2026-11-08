@@ -37,8 +37,25 @@ namespace AutoIME
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            MainWindowInstance = new MainWindow();
-            MainWindowInstance.Activate();
+            System.IO.File.WriteAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "startup.log"),
+                $"[{DateTime.Now:HH:mm:ss.fff}] OnLaunched start\r\n");
+
+            try
+            {
+                MainWindowInstance = new MainWindow();
+                System.IO.File.AppendAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "startup.log"),
+                    $"[{DateTime.Now:HH:mm:ss.fff}] MainWindow created, activating...\r\n");
+
+                MainWindowInstance.Activate();
+                System.IO.File.AppendAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "startup.log"),
+                    $"[{DateTime.Now:HH:mm:ss.fff}] MainWindow activated!\r\n");
+            }
+            catch (Exception ex)
+            {
+                System.IO.File.AppendAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "startup.log"),
+                    $"[{DateTime.Now:HH:mm:ss.fff}] Exception: {ex}\r\n");
+                throw;
+            }
         }
     }
 }

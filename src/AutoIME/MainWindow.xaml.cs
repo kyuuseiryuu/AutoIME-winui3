@@ -40,44 +40,67 @@ namespace AutoIME
         private CaptureOverlayWindow? _captureOverlay;
         private bool _isExplicitExit = false;
 
+        private static void Log(string msg)
+        {
+            try
+            {
+                System.IO.File.AppendAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "startup.log"),
+                    $"[{DateTime.Now:HH:mm:ss.fff}] {msg}\r\n");
+            }
+            catch { }
+        }
+
         public MainWindow()
         {
+            Log("MainWindow ctor start");
             this.InitializeComponent();
+            Log("InitializeComponent done");
 
             _hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(_hwnd);
             _appWindow = AppWindow.GetFromWindowId(windowId);
+            Log($"Window handle: {_hwnd}");
 
             // Configure Window
             this.SetWindowSize(940, 700);
             this.CenterOnScreen();
             this.ExtendsContentIntoTitleBar = true;
             this.SetTitleBar(AppTitleBar);
+            Log("Window size and titlebar configured");
 
             try
             {
                 this.SystemBackdrop = new MicaBackdrop();
+                Log("MicaBackdrop set");
             }
-            catch { }
+            catch (Exception ex) { Log($"Mica error: {ex.Message}"); }
 
             try
             {
                 this.SetIcon("Assets/AppIcon.ico");
+                Log("Icon set");
             }
-            catch { }
+            catch (Exception ex) { Log($"Icon error: {ex.Message}"); }
 
             // Initialize Floating Windows
+            Log("Creating ToolTipFloatingWindow");
             _tooltipWindow = new ToolTipFloatingWindow();
+            Log("Creating CaptureOverlayWindow");
             _captureOverlay = new CaptureOverlayWindow();
+            Log("Floating windows created");
 
             // Setup Hotkey
+            Log("Initializing HotkeyService");
             _hotkeyService.Initialize(_hwnd);
             _hotkeyService.HotkeyPressed += OnGlobalHotkeyPressed;
             _hotkeyService.Register(ViewModel.Settings.Hotkey);
+            Log("HotkeyService initialized");
 
             // Setup Window Watcher
+            Log("Initializing WindowWatcherService");
             WindowWatcherService.Instance.WindowSwitched += OnWindowSwitched;
             WindowWatcherService.Instance.Start();
+            Log("WindowWatcherService started");
 
             // Setup Capture Service events
             WindowCaptureService.Instance.HoverUpdated += OnCaptureHoverUpdated;
@@ -93,6 +116,7 @@ namespace AutoIME
             ApplyTheme(ViewModel.Settings.Theme);
             SyncUIFromSettings();
             ApplyLanguageUI();
+            Log("MainWindow ctor complete");
         }
 
         private void SyncUIFromSettings()

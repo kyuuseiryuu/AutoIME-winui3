@@ -60,11 +60,19 @@ jobs:
           Compress-Archive -Path "./dist\*" -DestinationPath $zipName -Force
           Write-Host "Created release archive: $zipName"
 
+      - name: Build Inno Setup Installer
+        shell: pwsh
+        run: |
+          choco install innosetup -y --no-progress
+          & "C:\Program Files (x86)\Inno Setup 6\iscc.exe" "installer/AutoIME.iss"
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: AutoIME-${{ steps.vars.outputs.sha_short }}-win-x64
-          path: AutoIME-*-win-x64.zip
+          path: |
+            AutoIME-*-win-x64.zip
+            dist-installer/AutoIME_Setup_*.exe
 
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
@@ -74,5 +82,7 @@ jobs:
           name: AutoIME ${{ steps.vars.outputs.version }}
           draft: false
           prerelease: false
-          files: AutoIME-*-win-x64.zip
+          files: |
+            AutoIME-*-win-x64.zip
+            dist-installer/AutoIME_Setup_*.exe
 

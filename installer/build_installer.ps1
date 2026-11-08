@@ -19,6 +19,12 @@ if (-not $SkipPublish) {
     Push-Location $ProjectRoot
     try {
         dotnet publish src/AutoIME/AutoIME.csproj -c Release -r win-x64 --self-contained true -o ./dist
+        $docFiles = @("AutoIME_config.example.ini", "LICENSE", "README.md", "README_zh.md", "PRIVACY.md")
+        foreach ($file in $docFiles) {
+            if (Test-Path $file) {
+                Copy-Item $file "./dist/" -Force
+            }
+        }
     } finally {
         Pop-Location
     }

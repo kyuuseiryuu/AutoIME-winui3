@@ -3,7 +3,7 @@ name: Build and Package Release
 on:
   push:
     branches: [ "main", "master" ]
-    tags: [ "v*" ]
+    tags: [ "v*", "[0-9]+.*" ]
   workflow_dispatch:
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             VER="${{ github.ref_name }}"
           else
-            VER="v2.0.0-${SHORT_SHA}"
+            VER="v1.0.0-${SHORT_SHA}"
           fi
           echo "version=$VER" >> $GITHUB_OUTPUT
           echo "Resolved Version: $VER"
@@ -55,6 +55,7 @@ jobs:
           Copy-Item "LICENSE" "./dist/"
           Copy-Item "README.md" "./dist/"
           Copy-Item "README_zh.md" "./dist/"
+          Copy-Item "PRIVACY.md" "./dist/"
 
           $zipName = "AutoIME-${{ steps.vars.outputs.sha_short }}-win-x64.zip"
           Compress-Archive -Path "./dist\*" -DestinationPath $zipName -Force

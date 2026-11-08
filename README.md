@@ -32,8 +32,8 @@ This project is a complete refactoring of the original AutoHotkey v2 + WebView2 
 - **⌨️ Interactive Hotkey Recording**: Built-in modal dialog to capture physical key combinations (`Ctrl`, `Alt`, `Shift`, `Win` + any key) with global shortcut registration.
 - **Search & Batch Management**: Real-time process filtering, select all/individual selection, batch deletion, and clearing tabs.
 - **Theme Modes**: ☀️ Light, 🌙 Dark, and 💻 Follow System.
-- **System Tray Integration**: Minimizes to tray, with a context menu for quick access, reloading, toggling tooltips, auto-start, checking updates, and restarting.
-- **Multi-Language Support**: English, Simplified Chinese, and Japanese.
+- **System Tray Integration**: Minimizes to tray, with a context menu for quick access, reloading, toggling tooltips, auto-start, and restarting/exiting.
+- **Multi-Language Support**: English, Simplified Chinese, and Japanese using Windows-recommended `.resw` / PRI resource management.
 
 ---
 

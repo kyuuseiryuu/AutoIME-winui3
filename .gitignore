@@ -1,6 +1,8 @@
 ## Build & IDE
 bin/
 obj/
+dist/
+publish/
 *.user
 *.suo
 *.userosscache

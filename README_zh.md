@@ -32,8 +32,8 @@ AutoIME 是一个运行于 Windows 平台的后台智能辅助工具，能够根
 - **⌨️ 交互式按键录制**：内置快捷键设置弹窗，实时监听物理按键组合（支持 `Ctrl`、`Alt`、`Shift`、`Win` 与任意按键），保存后全局生效。
 - **规则检索与批量管理**：支持按进程名或备注实时模糊搜索、全选与多选批量删除及清空当前页规则。
 - **三态主题切换**：支持 ☀️ 浅色模式、🌙 深色模式与 💻 跟随系统自动适配。
-- **系统托盘深度集成**：支持最小化至系统通知区域常驻，托盘右键菜单提供快速打开、重载配置、悬浮提示切换、开机自启、在线检查更新及重启退出。
-- **多语言国际化支持**：内置简体中文 (zh)、英文 (en) 与日语 (ja)，可随界面实时切换。
+- **系统托盘深度集成**：支持最小化至系统通知区域常驻，托盘右键菜单提供快速打开、重载配置、悬浮提示切换、开机自启、重启与退出。
+- **多语言国际化支持**：采用 Windows 推荐的 `.resw` / PRI 规范，内置简体中文 (zh-CN)、英文 (en-US) 与日语 (ja-JP)，支持界面即时切换。
 
 ---
 
@@ -45,8 +45,13 @@ AutoIME-winui3/
 ├── src/AutoIME/                 # WinUI 3 主程序工程
 │   ├── AutoIME.csproj          # 工程配置 (Unpackaged .NET 8)
 │   ├── app.manifest            # Windows DPI 与特权清单
-│   ├── App.xaml / App.xaml.cs   # 应用单实例生命周期
+│   ├── App.xaml / App.xaml.cs   # 应用单实例生命周期与互斥体管理
 │   ├── MainWindow.xaml / .cs    # 主配置窗口 (Mica, 标签页, 工具栏, 规则表)
+│   ├── Assets/                 # 应用程序 Fluent 风格 Logo 与各尺寸图标
+│   ├── Strings/                # 微软推荐的 Windows 资源文件 (.resw)
+│   │   ├── zh-CN/Resources.resw # 简体中文资源
+│   │   ├── en-US/Resources.resw # 英文资源
+│   │   └── ja-JP/Resources.resw # 日文资源
 │   ├── Helpers/
 │   │   └── Win32Native.cs      # IMM32、WinEventHook、User32 P/Invoke 接口定义
 │   ├── Models/
@@ -61,8 +66,7 @@ AutoIME-winui3/
 │   │   ├── HotkeyService.cs    # 全局唤醒热键注册与窗口子类化消息拦截
 │   │   ├── FileIconHelper.cs   # 提取目标 EXE 文件高清图标并生成位图
 │   │   ├── StartupService.cs   # Windows 开机自启动快捷方式管理
-│   │   ├── LocalizationService.cs # 国际化多语言翻译字典与格式化器
-│   │   └── UpdateService.cs    # GitHub Release 最新版本比对检查服务
+│   │   └── LocalizationService.cs # MRT Core (ResourceManager) 国际化加载器
 │   ├── ViewModels/
 │   │   └── MainViewModel.cs    # MVVM 响应式逻辑与命令处理
 │   └── Views/

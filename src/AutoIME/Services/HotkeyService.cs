@@ -43,7 +43,12 @@ namespace AutoIME.Services
                 return IntPtr.Zero;
             }
 
-            return Win32Native.CallNextHookEx(IntPtr.Zero, 0, wParam, lParam);
+            if (_oldWndProc != IntPtr.Zero)
+            {
+                return Win32Native.CallWindowProc(_oldWndProc, hWnd, msg, wParam, lParam);
+            }
+
+            return Win32Native.DefWindowProc(hWnd, msg, wParam, lParam);
         }
 
         public bool Register(string hotkeyStr)

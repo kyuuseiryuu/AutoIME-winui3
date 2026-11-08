@@ -75,3 +75,4 @@ jobs:
           draft: false
           prerelease: false
           files: AutoIME-*-win-x64.zip
+

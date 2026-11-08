@@ -22,7 +22,15 @@ namespace AutoIME.Views
             var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(_hwnd);
             _appWindow = AppWindow.GetFromWindowId(windowId);
 
-            _appWindow.IsShownInSwitchers = false;
+            // Hide from Alt+Tab and taskbar using Win32 ToolWindow style
+            try
+            {
+                const int GWL_EXSTYLE = -20;
+                const int WS_EX_TOOLWINDOW = 0x00000080;
+                long exStyle = Win32Native.GetWindowLongPtr(_hwnd, GWL_EXSTYLE).ToInt64();
+                Win32Native.SetWindowLongPtr(_hwnd, GWL_EXSTYLE, (IntPtr)(exStyle | WS_EX_TOOLWINDOW));
+            }
+            catch { }
 
             if (_appWindow.Presenter is OverlappedPresenter presenter)
             {

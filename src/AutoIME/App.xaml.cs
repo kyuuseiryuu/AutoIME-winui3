@@ -13,6 +13,18 @@ namespace AutoIME
         {
             this.InitializeComponent();
 
+            this.UnhandledException += (s, e) =>
+            {
+                System.IO.File.WriteAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "crash.log"),
+                    $"{e.Message}\r\n{e.Exception}");
+            };
+
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                System.IO.File.WriteAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "crash_domain.log"),
+                    $"{e.ExceptionObject}");
+            };
+
             // Ensure single instance
             _singleInstanceMutex = new Mutex(true, "AutoIME_WinUI3_SingleInstance_Mutex", out bool createdNew);
             if (!createdNew)

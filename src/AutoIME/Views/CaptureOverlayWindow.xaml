@@ -1,0 +1,59 @@
+<Window
+    x:Class="AutoIME.Views.CaptureOverlayWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="AutoIME Capture">
+
+    <Grid>
+        <Border Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
+                BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
+                BorderThickness="2"
+                CornerRadius="10"
+                Padding="16,12"
+                Margin="6">
+            <StackPanel Spacing="6">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="🎯" FontSize="16" />
+                    <TextBlock x:Name="TxtHeader"
+                               Text="【AutoIME 窗口捕获模式】"
+                               FontWeight="Bold"
+                               FontSize="14"
+                               Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                </StackPanel>
+
+                <TextBlock x:Name="TxtTargetIme"
+                           Text="目标输入法: 中文(简体) - 微软拼音"
+                           FontWeight="SemiBold"
+                           FontSize="12" />
+
+                <MenuFlyoutSeparator Margin="0,2" />
+
+                <TextBlock x:Name="TxtProc"
+                           Text="当前指向进程: code.exe"
+                           FontSize="12" />
+
+                <TextBlock x:Name="TxtTitle"
+                           Text="当前窗口标题: Visual Studio Code"
+                           FontSize="12"
+                           TextTrimming="CharacterEllipsis"
+                           MaxWidth="340"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+
+                <MenuFlyoutSeparator Margin="0,2" />
+
+                <TextBlock x:Name="TxtHintConfirm"
+                           Text="👉 操作: [点击鼠标左键] 或按 [空格/回车/F8] 捕获"
+                           FontSize="11"
+                           Foreground="{ThemeResource SystemFillColorSuccessBrush}" />
+
+                <TextBlock x:Name="TxtHintCancel"
+                           Text="👉 取消: 按 [ESC] 退出捕获"
+                           FontSize="11"
+                           Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

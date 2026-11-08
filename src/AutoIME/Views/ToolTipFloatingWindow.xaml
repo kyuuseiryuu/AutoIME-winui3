@@ -1,0 +1,36 @@
+<Window
+    x:Class="AutoIME.Views.ToolTipFloatingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="AutoIME Notification">
+
+    <Grid>
+        <Border Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="14,10"
+                Margin="8">
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <FontIcon x:Name="StateIcon"
+                          Glyph="&#xE73E;"
+                          FontSize="20"
+                          Foreground="{ThemeResource SystemFillColorSuccessBrush}"
+                          VerticalAlignment="Center" />
+                <StackPanel Spacing="2" VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtTitle"
+                               Text="【命中规则】code.exe"
+                               FontWeight="SemiBold"
+                               FontSize="13" />
+                    <TextBlock x:Name="TxtSubtitle"
+                               Text="切换至: 英语(美国) - 美式键盘"
+                               FontSize="12"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,37 @@
+<ContentDialog
+    x:Class="AutoIME.Views.ManualAddDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="➕ 手动添加程序配置"
+    PrimaryButtonText="确定"
+    CloseButtonText="取消"
+    DefaultButton="Primary"
+    PrimaryButtonClick="OnPrimaryButtonClick"
+    CornerRadius="8">
+
+    <StackPanel Spacing="16" MinWidth="380" Margin="0,8,0,0">
+        <TextBlock x:Name="TxtPrompt"
+                   Text="请输入程序进程文件名（例如 notepad.exe 或 code.exe）："
+                   Style="{StaticResource BodyTextBlockStyle}"
+                   TextWrapping="Wrap" />
+
+        <TextBox x:Name="BoxExe"
+                 PlaceholderText="例如：code.exe"
+                 HorizontalAlignment="Stretch" />
+
+        <TextBlock x:Name="TxtRemarkLabel"
+                   Text="程序备注 (可选)："
+                   Style="{StaticResource BodyTextBlockStyle}" />
+
+        <TextBox x:Name="BoxRemark"
+                 PlaceholderText="例如：Visual Studio Code"
+                 HorizontalAlignment="Stretch" />
+
+        <InfoBar x:Name="ErrInfoBar"
+                 Severity="Error"
+                 IsOpen="False" />
+    </StackPanel>
+</ContentDialog>

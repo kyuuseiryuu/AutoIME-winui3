@@ -46,7 +46,7 @@ jobs:
 
       - name: Publish standalone x64 release
         run: |
-          dotnet publish src/AutoIME/AutoIME.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:WindowsPackageType=None -o ./dist
+          dotnet publish src/AutoIME/AutoIME.csproj -c Release -r win-x64 --self-contained -p:WindowsPackageType=None -o ./dist
 
       - name: Assemble release package
         shell: pwsh

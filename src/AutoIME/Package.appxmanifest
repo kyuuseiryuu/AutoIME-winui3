@@ -6,8 +6,7 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  xmlns:systemai="http://schemas.microsoft.com/appx/manifest/systemai/windows10"
-  IgnorableNamespaces="uap uap10 rescap systemai">
+  IgnorableNamespaces="uap uap10 rescap">
 
   <Identity
     Name="FEFE369C.AutoIME"
@@ -52,6 +51,5 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    <systemai:Capability Name="systemAIModels"/>
   </Capabilities>
 </Package>

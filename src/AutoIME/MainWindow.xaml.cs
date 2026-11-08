@@ -21,6 +21,11 @@ namespace AutoIME
     {
         public MainViewModel ViewModel { get; } = new();
         public CommunityToolkit.Mvvm.Input.IRelayCommand OpenWindowCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(() => OnTrayOpenClicked(null, null));
+        public CommunityToolkit.Mvvm.Input.IRelayCommand ReloadCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoReload);
+        public CommunityToolkit.Mvvm.Input.IRelayCommand ToggleDebugCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoToggleDebug);
+        public CommunityToolkit.Mvvm.Input.IRelayCommand ToggleStartupCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoToggleStartup);
+        public CommunityToolkit.Mvvm.Input.IRelayCommand RestartCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoRestart);
+        public CommunityToolkit.Mvvm.Input.IRelayCommand ExitCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoExit);
 
         public Visibility GetEmptyVisibility(int count) => count == 0 ? Visibility.Visible : Visibility.Collapsed;
         public string GetSelectedCountText(int count) => ViewModel.Loc["selected_count", count];
@@ -479,29 +484,47 @@ namespace AutoIME
 
         public void OnTrayOpenClicked(object? sender, object? e)
         {
-            this.Show();
-            Win32Native.SetForegroundWindow(_hwnd);
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                this.Show();
+                Win32Native.SetForegroundWindow(_hwnd);
+            });
         }
 
-        private void OnTrayReloadClicked(object sender, RoutedEventArgs e)
+        private void OnTrayReloadClicked(object sender, RoutedEventArgs e) => DoReload();
+        private void DoReload()
         {
-            ViewModel.InitializeData();
-            ViewModel.ShowStatus(ViewModel.Loc["save_success"], "Success");
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                ViewModel.InitializeData();
+                ViewModel.ShowStatus(ViewModel.Loc["save_success"], "Success");
+            });
         }
 
-        private void OnTrayToggleDebugClicked(object sender, RoutedEventArgs e)
+        private void OnTrayToggleDebugClicked(object sender, RoutedEventArgs e) => DoToggleDebug();
+        private void DoToggleDebug()
         {
-            ViewModel.ToggleDebugMode(TrayDebugItem.IsChecked);
-            ChkDebugMode.IsChecked = ViewModel.Settings.DebugMode;
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                ViewModel.ToggleDebugMode(!ViewModel.Settings.DebugMode);
+                TrayDebugItem.IsChecked = ViewModel.Settings.DebugMode;
+                ChkDebugMode.IsChecked = ViewModel.Settings.DebugMode;
+            });
         }
 
-        private void OnTrayToggleStartupClicked(object sender, RoutedEventArgs e)
+        private void OnTrayToggleStartupClicked(object sender, RoutedEventArgs e) => DoToggleStartup();
+        private void DoToggleStartup()
         {
-            ViewModel.ToggleAutoStart(TrayStartupItem.IsChecked);
-            ChkAutoStart.IsChecked = ViewModel.Settings.AutoStart;
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                ViewModel.ToggleAutoStart(!ViewModel.Settings.AutoStart);
+                TrayStartupItem.IsChecked = ViewModel.Settings.AutoStart;
+                ChkAutoStart.IsChecked = ViewModel.Settings.AutoStart;
+            });
         }
 
-        private void OnTrayRestartClicked(object sender, RoutedEventArgs e)
+        private void OnTrayRestartClicked(object sender, RoutedEventArgs e) => DoRestart();
+        private void DoRestart()
         {
             _isExplicitExit = true;
             try { WindowWatcherService.Instance.Stop(); } catch { }
@@ -517,7 +540,8 @@ namespace AutoIME
             Environment.Exit(0);
         }
 
-        private void OnTrayExitClicked(object sender, RoutedEventArgs e)
+        private void OnTrayExitClicked(object sender, RoutedEventArgs e) => DoExit();
+        private void DoExit()
         {
             _isExplicitExit = true;
             try { WindowWatcherService.Instance.Stop(); } catch { }

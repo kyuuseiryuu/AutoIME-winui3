@@ -46,8 +46,21 @@
     <Copy SourceFiles="$(TargetDir)AutoIME.pri" DestinationFiles="$(TargetDir)resources.pri" Condition="Exists('$(TargetDir)AutoIME.pri')" />
   </Target>
 
+  <Target Name="CopyWinUIAssetsToPublish" AfterTargets="Publish">
+    <ItemGroup>
+      <PublishPriFiles Include="$(TargetDir)*.pri" />
+      <PublishXbfFiles Include="$(TargetDir)**\*.xbf" />
+      <PublishAssetsFiles Include="$(TargetDir)Assets\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PublishPriFiles)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(TargetDir)AutoIME.pri" DestinationFiles="$(PublishDir)resources.pri" Condition="Exists('$(TargetDir)AutoIME.pri')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PublishXbfFiles)" DestinationFolder="$(PublishDir)%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PublishAssetsFiles)" DestinationFolder="$(PublishDir)Assets\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+
   <!-- Publish Properties -->
   <PropertyGroup>
+    <PublishSingleFile>false</PublishSingleFile>
     <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
     <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>

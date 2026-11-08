@@ -20,3 +20,4 @@ namespace AutoIME.Models
         private bool _autoStart = false;
     }
 }
+

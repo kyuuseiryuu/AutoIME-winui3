@@ -1,0 +1,77 @@
+name: Build and Package Release
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags: [ "v*" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Package Release
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Get short commit hash and dynamic version
+        id: vars
+        shell: bash
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          echo "sha_short=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "Current Short SHA: $SHORT_SHA"
+
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            VER="${{ github.ref_name }}"
+          else
+            VER="v2.0.0-${SHORT_SHA}"
+          fi
+          echo "version=$VER" >> $GITHUB_OUTPUT
+          echo "Resolved Version: $VER"
+
+      - name: Restore dependencies
+        run: dotnet restore AutoIME.sln
+
+      - name: Publish standalone x64 release
+        run: |
+          dotnet publish src/AutoIME/AutoIME.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:WindowsPackageType=None -o ./dist
+
+      - name: Assemble release package
+        shell: pwsh
+        run: |
+          Copy-Item "AutoIME_config.example.ini" "./dist/"
+          Copy-Item "LICENSE" "./dist/"
+          Copy-Item "README.md" "./dist/"
+          Copy-Item "README_zh.md" "./dist/"
+
+          $zipName = "AutoIME-${{ steps.vars.outputs.sha_short }}-win-x64.zip"
+          Compress-Archive -Path "./dist\*" -DestinationPath $zipName -Force
+          Write-Host "Created release archive: $zipName"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AutoIME-${{ steps.vars.outputs.sha_short }}-win-x64
+          path: AutoIME-*-win-x64.zip
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.version }}
+          name: AutoIME ${{ steps.vars.outputs.version }}
+          draft: false
+          prerelease: false
+          files: AutoIME-*-win-x64.zip

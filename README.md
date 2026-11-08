@@ -69,3 +69,4 @@ The resulting standalone executable will be generated at `./dist/AutoIME.exe`.
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+

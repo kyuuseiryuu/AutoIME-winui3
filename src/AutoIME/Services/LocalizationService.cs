@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Windows.ApplicationModel.Resources;
 
 namespace AutoIME.Services
 {
@@ -11,6 +12,63 @@ namespace AutoIME.Services
 
         [ObservableProperty]
         private string _currentLanguage = "zh";
+
+        private readonly ResourceManager? _resourceManager;
+        private readonly ResourceContext? _resourceContext;
+        private readonly ResourceMap? _resourceMap;
+
+        public LocalizationService()
+        {
+            try
+            {
+                var priPath = System.IO.Path.Combine(AppContext.BaseDirectory, "AutoIME.pri");
+                if (!System.IO.File.Exists(priPath))
+                {
+                    priPath = System.IO.Path.Combine(AppContext.BaseDirectory, "resources.pri");
+                }
+
+                if (System.IO.File.Exists(priPath))
+                {
+                    _resourceManager = new ResourceManager(priPath);
+                }
+                else
+                {
+                    _resourceManager = new ResourceManager();
+                }
+
+                _resourceContext = _resourceManager.CreateResourceContext();
+                try
+                {
+                    _resourceMap = _resourceManager.MainResourceMap.GetSubtree("Resources");
+                }
+                catch
+                {
+                    _resourceMap = _resourceManager.MainResourceMap;
+                }
+                UpdateResourceContextLanguage();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[LocalizationService] MRT ResourceManager init warning: {ex.Message}");
+                _resourceManager = null;
+                _resourceContext = null;
+                _resourceMap = null;
+            }
+        }
+
+        private void UpdateResourceContextLanguage()
+        {
+            if (_resourceContext == null) return;
+
+            var tag = CurrentLanguage switch
+            {
+                "zh" => "zh-CN",
+                "ja" => "ja-JP",
+                _ => "en-US"
+            };
+
+            _resourceContext.QualifierValues["Language"] = tag;
+        }
 
         private readonly Dictionary<string, Dictionary<string, string>> _translations = new()
         {
@@ -92,8 +150,6 @@ namespace AutoIME.Services
                 ["tray_reload_config"] = "🔄 重新加载配置",
                 ["tray_toggle_debug"] = "💬 切换悬浮提示 (ToolTip)",
                 ["tray_toggle_startup"] = "🚀 开机自启动",
-                ["tray_github"] = "🌐 GitHub 项目主页",
-                ["tray_check_update"] = "🔄 检查更新...",
                 ["tray_restart"] = "⚡ 重启 AutoIME",
                 ["tray_exit"] = "❌ 退出 AutoIME",
                 ["tray_tip_minimized"] = "AutoIME 已最小化到系统托盘，正在后台持续监听。\n双击托盘图标或按唤醒快捷键可重新打开配置。",
@@ -105,15 +161,7 @@ namespace AutoIME.Services
                 // 主题
                 ["theme_system"] = "💻 跟随系统",
                 ["theme_light"] = "☀️ 浅色模式",
-                ["theme_dark"] = "🌙 深色模式",
-
-                // 更新
-                ["update_title"] = "🚀 软件更新",
-                ["update_checking"] = "正在检查新版本...",
-                ["update_latest"] = "当前已是最新版本 ({1})",
-                ["update_available"] = "发现新版本: {1}",
-                ["update_btn_now"] = "前往下载",
-                ["update_btn_later"] = "稍后提醒",
+                ["theme_dark"] = "🌙 深色模式"
             },
             ["en"] = new Dictionary<string, string>
             {
@@ -189,8 +237,6 @@ namespace AutoIME.Services
                 ["tray_reload_config"] = "🔄 Reload Config",
                 ["tray_toggle_debug"] = "💬 Toggle ToolTip Hints",
                 ["tray_toggle_startup"] = "🚀 Run on Startup",
-                ["tray_github"] = "🌐 GitHub Repository",
-                ["tray_check_update"] = "🔄 Check for Updates...",
                 ["tray_restart"] = "⚡ Restart AutoIME",
                 ["tray_exit"] = "❌ Exit AutoIME",
                 ["tray_tip_minimized"] = "AutoIME is minimized to tray and running in background.\nDouble-click tray icon or press hotkey to open settings.",
@@ -201,14 +247,7 @@ namespace AutoIME.Services
 
                 ["theme_system"] = "💻 Follow System",
                 ["theme_light"] = "☀️ Light",
-                ["theme_dark"] = "🌙 Dark",
-
-                ["update_title"] = "🚀 Software Update",
-                ["update_checking"] = "Checking for new version...",
-                ["update_latest"] = "You are using the latest version ({1})",
-                ["update_available"] = "New version available: {1}",
-                ["update_btn_now"] = "Download",
-                ["update_btn_later"] = "Later",
+                ["theme_dark"] = "🌙 Dark"
             },
             ["ja"] = new Dictionary<string, string>
             {
@@ -284,8 +323,6 @@ namespace AutoIME.Services
                 ["tray_reload_config"] = "🔄 設定を再読込",
                 ["tray_toggle_debug"] = "💬 フローティング通知の切替",
                 ["tray_toggle_startup"] = "🚀 スタートアップ自動実行",
-                ["tray_github"] = "🌐 GitHub リポジトリ",
-                ["tray_check_update"] = "🔄 アップデートを確認...",
                 ["tray_restart"] = "⚡ AutoIME を再起動",
                 ["tray_exit"] = "❌ AutoIME を終了",
                 ["tray_tip_minimized"] = "AutoIME はシステムトレイに最小化され、バックグラウンドで監視中です。\nダブルクリックまたはホットキーで設定画面を開けます。",
@@ -296,32 +333,57 @@ namespace AutoIME.Services
 
                 ["theme_system"] = "💻 システムに従う",
                 ["theme_light"] = "☀️ ライト",
-                ["theme_dark"] = "🌙 ダーク",
-
-                ["update_title"] = "🚀 アップデート",
-                ["update_checking"] = "新しいバージョンを確認中...",
-                ["update_latest"] = "最新のバージョンを使用しています ({1})",
-                ["update_available"] = "新しいバージョンが見つかりました: {1}",
-                ["update_btn_now"] = "ダウンロード",
-                ["update_btn_later"] = "後で",
+                ["theme_dark"] = "🌙 ダーク"
             }
         };
 
         public string Get(string key, params object[] args)
         {
-            var lang = CurrentLanguage;
-            if (!_translations.ContainsKey(lang))
-                lang = "en";
+            string? val = null;
 
-            var dict = _translations[lang];
-            if (!dict.TryGetValue(key, out var val))
+            // 1. Try Windows App SDK MRT Core (PRI / .resw)
+            if (_resourceMap != null && _resourceContext != null)
             {
-                if (_translations["en"].TryGetValue(key, out var enVal))
-                    val = enVal;
-                else
-                    val = key;
+                try
+                {
+                    var candidate = _resourceMap.TryGetValue(key, _resourceContext);
+                    if (candidate != null && !string.IsNullOrEmpty(candidate.ValueAsString))
+                    {
+                        val = candidate.ValueAsString;
+                    }
+                    else if (_resourceManager != null)
+                    {
+                        var fullCandidate = _resourceManager.MainResourceMap.TryGetValue($"Resources/{key}", _resourceContext);
+                        if (fullCandidate != null && !string.IsNullOrEmpty(fullCandidate.ValueAsString))
+                        {
+                            val = fullCandidate.ValueAsString;
+                        }
+                    }
+                }
+                catch
+                {
+                    // Fallback to internal dictionary
+                }
             }
 
+            // 2. Fallback to internal dictionary if PRI didn't return value
+            if (string.IsNullOrEmpty(val))
+            {
+                var lang = CurrentLanguage;
+                if (!_translations.ContainsKey(lang))
+                    lang = "en";
+
+                var dict = _translations[lang];
+                if (!dict.TryGetValue(key, out val))
+                {
+                    if (_translations["en"].TryGetValue(key, out var enVal))
+                        val = enVal;
+                    else
+                        val = key;
+                }
+            }
+
+            // 3. Format placeholders {1}, {2}...
             if (args != null && args.Length > 0)
             {
                 for (int i = 0; i < args.Length; i++)
@@ -338,6 +400,7 @@ namespace AutoIME.Services
 
         partial void OnCurrentLanguageChanged(string value)
         {
+            UpdateResourceContextLanguage();
             OnPropertyChanged(string.Empty); // Notify all bindings to refresh
         }
     }

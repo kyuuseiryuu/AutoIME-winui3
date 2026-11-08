@@ -24,9 +24,6 @@
                     <ToggleMenuFlyoutItem x:Name="TrayDebugItem" Text="💬 切换悬浮提示" Click="OnTrayToggleDebugClicked" />
                     <ToggleMenuFlyoutItem x:Name="TrayStartupItem" Text="🚀 开机自启动" Click="OnTrayToggleStartupClicked" />
                     <MenuFlyoutSeparator />
-                    <MenuFlyoutItem x:Name="TrayGithubItem" Text="🌐 GitHub 项目主页" Click="OnTrayGithubClicked" />
-                    <MenuFlyoutItem x:Name="TrayUpdateItem" Text="🔄 检查更新..." Click="OnTrayCheckUpdateClicked" />
-                    <MenuFlyoutSeparator />
                     <MenuFlyoutItem x:Name="TrayRestartItem" Text="⚡ 重启 AutoIME" Click="OnTrayRestartClicked" />
                     <MenuFlyoutItem x:Name="TrayExitItem" Text="❌ 退出 AutoIME" Click="OnTrayExitClicked" />
                 </MenuFlyout>
@@ -49,14 +46,15 @@
                            FontWeight="SemiBold"
                            FontSize="14"
                            VerticalAlignment="Center" />
-                <Button x:Name="BtnVersionBadge"
-                        Content="v2.0 #WinUI3"
+                <Border Background="{ThemeResource SubtleFillColorSecondaryBrush}"
                         Padding="8,2"
-                        FontSize="11"
-                        CornerRadius="12"
-                        ToolTipService.ToolTip="点击检查在线更新"
-                        Click="OnCheckUpdateClick"
-                        VerticalAlignment="Center" />
+                        CornerRadius="10"
+                        VerticalAlignment="Center">
+                    <TextBlock Text="v2.0"
+                               FontSize="11"
+                               FontWeight="SemiBold"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </Border>
             </StackPanel>
 
             <!-- Drag region in center -->

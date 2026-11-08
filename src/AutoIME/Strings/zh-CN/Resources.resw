@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="app_title" xml:space="preserve">
+    <value>AutoIME - 输入法自动切换规则配置</value>
+  </data>
+  <data name="header_title" xml:space="preserve">
+    <value>AutoIME 多输入法自动切换</value>
+  </data>
+  <data name="header_desc" xml:space="preserve">
+    <value>系统已安装输入法对应下方各标签页。在面板中添加程序后，激活该程序时将自动切换至此输入法。</value>
+  </data>
+  <data name="lang_label" xml:space="preserve">
+    <value>语言 / Language:</value>
+  </data>
+  <data name="hotkey_label" xml:space="preserve">
+    <value>唤醒快捷键:</value>
+  </data>
+  <data name="hotkey_updated" xml:space="preserve">
+    <value>激活快捷键已更新为: {1}</value>
+  </data>
+  <data name="hotkey_failed" xml:space="preserve">
+    <value>快捷键注册失败 ({1}): {2}</value>
+  </data>
+  <data name="ime_info" xml:space="preserve">
+    <value>输入法标识: {1} (LangID: 0x{2:X4})  |  已配置 {3} 个应用程序</value>
+  </data>
+  <data name="btn_capture" xml:space="preserve">
+    <value>🎯 窗口捕获</value>
+  </data>
+  <data name="btn_browse" xml:space="preserve">
+    <value>📁 浏览EXE</value>
+  </data>
+  <data name="btn_manual" xml:space="preserve">
+    <value>➕ 手动添加</value>
+  </data>
+  <data name="col_num" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="col_exe" xml:space="preserve">
+    <value>程序进程名 (EXE)</value>
+  </data>
+  <data name="col_desc" xml:space="preserve">
+    <value>程序备注 / 窗口标题说明</value>
+  </data>
+  <data name="col_action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="btn_delete" xml:space="preserve">
+    <value>❌ 删除选中</value>
+  </data>
+  <data name="btn_clear" xml:space="preserve">
+    <value>🗑️ 清空本页</value>
+  </data>
+  <data name="chk_debug" xml:space="preserve">
+    <value>启用悬浮提示 (ToolTip)</value>
+  </data>
+  <data name="chk_startup" xml:space="preserve">
+    <value>开机自启动</value>
+  </data>
+  <data name="btn_refresh_ime" xml:space="preserve">
+    <value>🔄 刷新输入法</value>
+  </data>
+  <data name="btn_save" xml:space="preserve">
+    <value>💾 保存并应用</value>
+  </data>
+  <data name="btn_minimize" xml:space="preserve">
+    <value>最小化到托盘</value>
+  </data>
+  <data name="search_placeholder" xml:space="preserve">
+    <value>搜索已配置进程名或备注...</value>
+  </data>
+  <data name="selected_count" xml:space="preserve">
+    <value>已选中 {1} 项</value>
+  </data>
+  <data name="hk_dialog_title" xml:space="preserve">
+    <value>⌨️ 设置唤醒快捷键</value>
+  </data>
+  <data name="hk_dialog_prompt" xml:space="preserve">
+    <value>请直接在键盘上按下想要绑定的按键组合：</value>
+  </data>
+  <data name="hk_dialog_help" xml:space="preserve">
+    <value>支持组合: Ctrl, Alt, Shift, Win + 任意字母/数字/功能键&#x0a;设置后点击【确定】保存生效</value>
+  </data>
+  <data name="hk_dialog_confirm" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="hk_dialog_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="hk_dialog_reset" xml:space="preserve">
+    <value>恢复默认 (Ctrl+Alt+I)</value>
+  </data>
+  <data name="hk_dialog_empty" xml:space="preserve">
+    <value>请先按下有效的按键组合！</value>
+  </data>
+  <data name="save_success" xml:space="preserve">
+    <value>✅ 配置已成功保存并立即生效！</value>
+  </data>
+  <data name="del_success" xml:space="preserve">
+    <value>已移除选中的程序</value>
+  </data>
+  <data name="del_select_hint" xml:space="preserve">
+    <value>请先在列表中选中要删除的程序行！</value>
+  </data>
+  <data name="clear_confirm" xml:space="preserve">
+    <value>确定要清空【{1}】下的所有已配置程序吗？</value>
+  </data>
+  <data name="clear_title" xml:space="preserve">
+    <value>确认清空</value>
+  </data>
+  <data name="browse_title" xml:space="preserve">
+    <value>选择需要绑定的可执行程序</value>
+  </data>
+  <data name="manual_prompt" xml:space="preserve">
+    <value>请输入程序进程文件名（例如 notepad.exe 或 code.exe）：</value>
+  </data>
+  <data name="manual_title" xml:space="preserve">
+    <value>手动添加程序配置</value>
+  </data>
+  <data name="manual_exe_placeholder" xml:space="preserve">
+    <value>例如：code.exe</value>
+  </data>
+  <data name="manual_remark_label" xml:space="preserve">
+    <value>程序备注 (可选)：</value>
+  </data>
+  <data name="manual_remark_placeholder" xml:space="preserve">
+    <value>例如：Visual Studio Code</value>
+  </data>
+  <data name="manual_default_remark" xml:space="preserve">
+    <value>手动添加</value>
+  </data>
+  <data name="already_in_tab" xml:space="preserve">
+    <value>程序 [{1}] 已在当前输入法【{2}】列表中！</value>
+  </data>
+  <data name="conflict_prompt" xml:space="preserve">
+    <value>程序 [{1}] 已经被绑定在【{2}】中。&#x0a;&#x0a;是否将其转移到当前的【{3}】？</value>
+  </data>
+  <data name="conflict_title" xml:space="preserve">
+    <value>规则冲突</value>
+  </data>
+  <data name="add_success" xml:space="preserve">
+    <value>✅ 成功绑定: {1} -> {2}</value>
+  </data>
+  <data name="capture_mode_title" xml:space="preserve">
+    <value>🎯 【AutoIME 窗口捕获模式】</value>
+  </data>
+  <data name="capture_target_ime" xml:space="preserve">
+    <value>目标输入法: {1}</value>
+  </data>
+  <data name="capture_hover_proc" xml:space="preserve">
+    <value>当前指向进程: {1}</value>
+  </data>
+  <data name="capture_hover_title" xml:space="preserve">
+    <value>当前窗口标题: {1}</value>
+  </data>
+  <data name="capture_no_title" xml:space="preserve">
+    <value>(无标题)</value>
+  </data>
+  <data name="capture_hint_confirm" xml:space="preserve">
+    <value>👉 操作：[点击鼠标左键] 或按 [空格/回车/F8] 立即捕获</value>
+  </data>
+  <data name="capture_hint_cancel" xml:space="preserve">
+    <value>👉 取消：按 [ESC 键] 退出捕获</value>
+  </data>
+  <data name="capture_scanning" xml:space="preserve">
+    <value>🎯 【窗口捕获中】请指向目标窗口并点击 (按 ESC 取消)</value>
+  </data>
+  <data name="capture_invalid" xml:space="preserve">
+    <value>未获取到有效窗口！</value>
+  </data>
+  <data name="capture_self_window" xml:space="preserve">
+    <value>您点击了 AutoIME 自身的配置窗口，捕获已取消。</value>
+  </data>
+  <data name="capture_failed_proc" xml:space="preserve">
+    <value>无法读取该窗口的进程名称！</value>
+  </data>
+  <data name="capture_failed_title" xml:space="preserve">
+    <value>捕获失败</value>
+  </data>
+  <data name="capture_cancelled" xml:space="preserve">
+    <value>已取消窗口捕获。</value>
+  </data>
+  <data name="startup_enabled" xml:space="preserve">
+    <value>已开启开机自启</value>
+  </data>
+  <data name="startup_disabled" xml:space="preserve">
+    <value>已关闭开机自启</value>
+  </data>
+  <data name="startup_failed" xml:space="preserve">
+    <value>设置自启动失败: {1}</value>
+  </data>
+  <data name="ime_reloaded" xml:space="preserve">
+    <value>输入法列表已重新加载！</value>
+  </data>
+  <data name="tray_open_config" xml:space="preserve">
+    <value>⚙️ 打开配置界面 ({1})</value>
+  </data>
+  <data name="tray_reload_config" xml:space="preserve">
+    <value>🔄 重新加载配置</value>
+  </data>
+  <data name="tray_toggle_debug" xml:space="preserve">
+    <value>💬 切换悬浮提示 (ToolTip)</value>
+  </data>
+  <data name="tray_toggle_startup" xml:space="preserve">
+    <value>🚀 开机自启动</value>
+  </data>
+  <data name="tray_restart" xml:space="preserve">
+    <value>⚡ 重启 AutoIME</value>
+  </data>
+  <data name="tray_exit" xml:space="preserve">
+    <value>❌ 退出 AutoIME</value>
+  </data>
+  <data name="tray_tip_minimized" xml:space="preserve">
+    <value>AutoIME 已最小化到系统托盘，正在后台持续监听。&#x0a;双击托盘图标或按唤醒快捷键可重新打开配置。</value>
+  </data>
+  <data name="debug_enabled" xml:space="preserve">
+    <value>调试悬浮提示已开启</value>
+  </data>
+  <data name="debug_disabled" xml:space="preserve">
+    <value>调试悬浮提示已关闭</value>
+  </data>
+  <data name="desc_dev_tool" xml:space="preserve">
+    <value>开发工具</value>
+  </data>
+  <data name="desc_chat_tool" xml:space="preserve">
+    <value>即时通讯</value>
+  </data>
+  <data name="theme_system" xml:space="preserve">
+    <value>💻 跟随系统</value>
+  </data>
+  <data name="theme_light" xml:space="preserve">
+    <value>☀️ 浅色模式</value>
+  </data>
+  <data name="theme_dark" xml:space="preserve">
+    <value>🌙 深色模式</value>
+  </data>
+</root>

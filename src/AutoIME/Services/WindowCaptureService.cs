@@ -119,12 +119,12 @@ namespace AutoIME.Services
                 uint msg = (uint)wParam.ToInt64();
                 if (msg == Win32Native.WM_LBUTTONDOWN)
                 {
-                    ConfirmCapture();
+                    ThreadPool.QueueUserWorkItem(_ => ConfirmCapture());
                     return (IntPtr)1; // Consume click
                 }
                 else if (msg == Win32Native.WM_RBUTTONDOWN)
                 {
-                    CancelCapture();
+                    ThreadPool.QueueUserWorkItem(_ => CancelCapture());
                     return (IntPtr)1;
                 }
             }
@@ -141,12 +141,12 @@ namespace AutoIME.Services
                     var kbd = Marshal.PtrToStructure<Win32Native.KBDLLHOOKSTRUCT>(lParam);
                     if (kbd.vkCode == 0x1B) // ESC
                     {
-                        CancelCapture();
+                        ThreadPool.QueueUserWorkItem(_ => CancelCapture());
                         return (IntPtr)1;
                     }
                     else if (kbd.vkCode == 0x0D || kbd.vkCode == 0x20 || kbd.vkCode == 0x77) // Enter, Space, F8
                     {
-                        ConfirmCapture();
+                        ThreadPool.QueueUserWorkItem(_ => ConfirmCapture());
                         return (IntPtr)1;
                     }
                 }

@@ -22,15 +22,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-48_altform-lightunplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\AppIcon.ico" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PRIResource Include="Strings\**\*.resw" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +41,10 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools.WinApp" Version="*" />
     <PackageReference Include="WinUIEx" Version="2.9.3" />
   </ItemGroup>
+
+  <Target Name="CopyPriFile" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetDir)AutoIME.pri" DestinationFiles="$(TargetDir)resources.pri" Condition="Exists('$(TargetDir)AutoIME.pri')" />
+  </Target>
 
   <!-- Publish Properties -->
   <PropertyGroup>

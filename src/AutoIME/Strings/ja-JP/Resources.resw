@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="app_title" xml:space="preserve">
+    <value>AutoIME - 入力方式自動切替ツールの設定</value>
+  </data>
+  <data name="header_title" xml:space="preserve">
+    <value>AutoIME 入力方式自動切替</value>
+  </data>
+  <data name="header_desc" xml:space="preserve">
+    <value>検出された入力方式が下のタブに表示されます。アプリを追加すると、そのアプリが前面になったとき自動的に切り替わります。</value>
+  </data>
+  <data name="lang_label" xml:space="preserve">
+    <value>言語 / Language:</value>
+  </data>
+  <data name="hotkey_label" xml:space="preserve">
+    <value>起動キー:</value>
+  </data>
+  <data name="hotkey_updated" xml:space="preserve">
+    <value>ショートカットキーを更新しました: {1}</value>
+  </data>
+  <data name="hotkey_failed" xml:space="preserve">
+    <value>ホットキーの登録に失敗しました ({1}): {2}</value>
+  </data>
+  <data name="ime_info" xml:space="preserve">
+    <value>IME識別子: {1} (LangID: 0x{2:X4})  |  設定済みアプリ: {3} 個</value>
+  </data>
+  <data name="btn_capture" xml:space="preserve">
+    <value>🎯 ウィンドウ取得</value>
+  </data>
+  <data name="btn_browse" xml:space="preserve">
+    <value>📁 EXE参照</value>
+  </data>
+  <data name="btn_manual" xml:space="preserve">
+    <value>➕ 手動追加</value>
+  </data>
+  <data name="col_num" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="col_exe" xml:space="preserve">
+    <value>プロセス名 (EXE)</value>
+  </data>
+  <data name="col_desc" xml:space="preserve">
+    <value>メモ / ウィンドウタイトル</value>
+  </data>
+  <data name="col_action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="btn_delete" xml:space="preserve">
+    <value>❌ 選択項目を削除</value>
+  </data>
+  <data name="btn_clear" xml:space="preserve">
+    <value>🗑️ タブ内を全消去</value>
+  </data>
+  <data name="chk_debug" xml:space="preserve">
+    <value>フローティング通知 (ToolTip) を有効化</value>
+  </data>
+  <data name="chk_startup" xml:space="preserve">
+    <value>Windows 起動時に自動実行</value>
+  </data>
+  <data name="btn_refresh_ime" xml:space="preserve">
+    <value>🔄 入力方式を再読込</value>
+  </data>
+  <data name="btn_save" xml:space="preserve">
+    <value>💾 保存して適用</value>
+  </data>
+  <data name="btn_minimize" xml:space="preserve">
+    <value>トレイに最小化</value>
+  </data>
+  <data name="search_placeholder" xml:space="preserve">
+    <value>プロセス名または備考を検索...</value>
+  </data>
+  <data name="selected_count" xml:space="preserve">
+    <value>{1} 項目選択中</value>
+  </data>
+  <data name="hk_dialog_title" xml:space="preserve">
+    <value>⌨️ 起動ホットキーの設定</value>
+  </data>
+  <data name="hk_dialog_prompt" xml:space="preserve">
+    <value>キーボードで希望のキーの組み合わせを押してください：</value>
+  </data>
+  <data name="hk_dialog_help" xml:space="preserve">
+    <value>対応修飾キー: Ctrl, Alt, Shift, Win + 任意のキー&#x0a;設定後に[確定]をクリックして保存します</value>
+  </data>
+  <data name="hk_dialog_confirm" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="hk_dialog_cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="hk_dialog_reset" xml:space="preserve">
+    <value>初期設定に戻す (Ctrl+Alt+I)</value>
+  </data>
+  <data name="hk_dialog_empty" xml:space="preserve">
+    <value>有効なキーの組み合わせを押してください！</value>
+  </data>
+  <data name="save_success" xml:space="preserve">
+    <value>✅ 設定が正常に保存され、直ちに適用されました！</value>
+  </data>
+  <data name="del_success" xml:space="preserve">
+    <value>選択したプログラムを削除しました</value>
+  </data>
+  <data name="del_select_hint" xml:space="preserve">
+    <value>リストから削除対象の行を選択してください！</value>
+  </data>
+  <data name="clear_confirm" xml:space="preserve">
+    <value>【{1}】に設定されたすべてのプログラムを削除してもよろしいですか？</value>
+  </data>
+  <data name="clear_title" xml:space="preserve">
+    <value>全消去の確認</value>
+  </data>
+  <data name="browse_title" xml:space="preserve">
+    <value>実行可能プログラムの選択</value>
+  </data>
+  <data name="manual_prompt" xml:space="preserve">
+    <value>実行可能ファイル名を入力してください（例：notepad.exe や code.exe）：</value>
+  </data>
+  <data name="manual_title" xml:space="preserve">
+    <value>手動でプログラムを追加</value>
+  </data>
+  <data name="manual_exe_placeholder" xml:space="preserve">
+    <value>例: code.exe</value>
+  </data>
+  <data name="manual_remark_label" xml:space="preserve">
+    <value>備考 / 説明（任意）：</value>
+  </data>
+  <data name="manual_remark_placeholder" xml:space="preserve">
+    <value>例: Visual Studio Code</value>
+  </data>
+  <data name="manual_default_remark" xml:space="preserve">
+    <value>手動追加</value>
+  </data>
+  <data name="already_in_tab" xml:space="preserve">
+    <value>プログラム [{1}] は既に【{2}】に登録されています！</value>
+  </data>
+  <data name="conflict_prompt" xml:space="preserve">
+    <value>プログラム [{1}] は既に【{2}】に割り当てられています。&#x0a;&#x0a;現在の【{3}】に移動しますか？</value>
+  </data>
+  <data name="conflict_title" xml:space="preserve">
+    <value>ルールの競合</value>
+  </data>
+  <data name="add_success" xml:space="preserve">
+    <value>✅ 関連付けに成功しました: {1} -> {2}</value>
+  </data>
+  <data name="capture_mode_title" xml:space="preserve">
+    <value>🎯 【AutoIME ウィンドウ取得モード】</value>
+  </data>
+  <data name="capture_target_ime" xml:space="preserve">
+    <value>対象の入力方式: {1}</value>
+  </data>
+  <data name="capture_hover_proc" xml:space="preserve">
+    <value>カーソル位置のプロセス: {1}</value>
+  </data>
+  <data name="capture_hover_title" xml:space="preserve">
+    <value>ウィンドウタイトル: {1}</value>
+  </data>
+  <data name="capture_no_title" xml:space="preserve">
+    <value>(タイトルなし)</value>
+  </data>
+  <data name="capture_hint_confirm" xml:space="preserve">
+    <value>👉 操作: [左クリック] または [Space/Enter/F8] で取得</value>
+  </data>
+  <data name="capture_hint_cancel" xml:space="preserve">
+    <value>👉 中止: [ESC] キーでキャンセル</value>
+  </data>
+  <data name="capture_scanning" xml:space="preserve">
+    <value>🎯 【取得中】対象ウィンドウをクリックしてください (ESCで中止)</value>
+  </data>
+  <data name="capture_invalid" xml:space="preserve">
+    <value>有効なウィンドウを取得できませんでした！</value>
+  </data>
+  <data name="capture_self_window" xml:space="preserve">
+    <value>AutoIME 自体の設定ウィンドウが選択されました。中止します。</value>
+  </data>
+  <data name="capture_failed_proc" xml:space="preserve">
+    <value>このウィンドウのプロセス名を取得できませんでした！</value>
+  </data>
+  <data name="capture_failed_title" xml:space="preserve">
+    <value>取得失敗</value>
+  </data>
+  <data name="capture_cancelled" xml:space="preserve">
+    <value>ウィンドウ取得をキャンセルしました。</value>
+  </data>
+  <data name="startup_enabled" xml:space="preserve">
+    <value>スタートアップを有効にしました</value>
+  </data>
+  <data name="startup_disabled" xml:space="preserve">
+    <value>スタートアップを無効にしました</value>
+  </data>
+  <data name="startup_failed" xml:space="preserve">
+    <value>自動起動の設定に失敗しました: {1}</value>
+  </data>
+  <data name="ime_reloaded" xml:space="preserve">
+    <value>入力方式の一覧を再読み込みしました！</value>
+  </data>
+  <data name="tray_open_config" xml:space="preserve">
+    <value>⚙️ 設定画面を開く ({1})</value>
+  </data>
+  <data name="tray_reload_config" xml:space="preserve">
+    <value>🔄 設定を再読込</value>
+  </data>
+  <data name="tray_toggle_debug" xml:space="preserve">
+    <value>💬 フローティング通知の切替</value>
+  </data>
+  <data name="tray_toggle_startup" xml:space="preserve">
+    <value>🚀 スタートアップ自動実行</value>
+  </data>
+  <data name="tray_restart" xml:space="preserve">
+    <value>⚡ AutoIME を再起動</value>
+  </data>
+  <data name="tray_exit" xml:space="preserve">
+    <value>❌ AutoIME を終了</value>
+  </data>
+  <data name="tray_tip_minimized" xml:space="preserve">
+    <value>AutoIME はシステムトレイに最小化され、バックグラウンドで監視中です。&#x0a;ダブルクリックまたはホットキーで設定画面を開けます。</value>
+  </data>
+  <data name="debug_enabled" xml:space="preserve">
+    <value>フローティング通知を有効にしました</value>
+  </data>
+  <data name="debug_disabled" xml:space="preserve">
+    <value>フローティング通知を無効にしました</value>
+  </data>
+  <data name="desc_dev_tool" xml:space="preserve">
+    <value>開発ツール</value>
+  </data>
+  <data name="desc_chat_tool" xml:space="preserve">
+    <value>チャットツール</value>
+  </data>
+  <data name="theme_system" xml:space="preserve">
+    <value>💻 システムに従う</value>
+  </data>
+  <data name="theme_light" xml:space="preserve">
+    <value>☀️ ライト</value>
+  </data>
+  <data name="theme_dark" xml:space="preserve">
+    <value>🌙 ダーク</value>
+  </data>
+</root>

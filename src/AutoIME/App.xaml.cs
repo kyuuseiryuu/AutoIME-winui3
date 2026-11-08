@@ -9,6 +9,21 @@ namespace AutoIME
         private static Mutex? _singleInstanceMutex;
         public static MainWindow? MainWindowInstance { get; private set; }
 
+        // Ensure single instance
+        public static void ReleaseSingleInstanceMutex()
+        {
+            try
+            {
+                if (_singleInstanceMutex != null)
+                {
+                    _singleInstanceMutex.ReleaseMutex();
+                    _singleInstanceMutex.Dispose();
+                    _singleInstanceMutex = null;
+                }
+            }
+            catch { }
+        }
+
         public App()
         {
             this.InitializeComponent();

@@ -78,6 +78,11 @@ namespace AutoIME
             try
             {
                 this.SetIcon("Assets/AppIcon.ico");
+                string iconPath = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "AppIcon.ico");
+                if (System.IO.File.Exists(iconPath))
+                {
+                    TrayIcon.Icon = new System.Drawing.Icon(iconPath);
+                }
                 Log("Icon set");
             }
             catch (Exception ex) { Log($"Icon error: {ex.Message}"); }
@@ -176,8 +181,6 @@ namespace AutoIME
             TrayReloadItem.Text = loc["tray_reload_config"];
             TrayDebugItem.Text = loc["tray_toggle_debug"];
             TrayStartupItem.Text = loc["tray_toggle_startup"];
-            TrayGithubItem.Text = loc["tray_github"];
-            TrayUpdateItem.Text = loc["tray_check_update"];
             TrayRestartItem.Text = loc["tray_restart"];
             TrayExitItem.Text = loc["tray_exit"];
         }
@@ -444,42 +447,6 @@ namespace AutoIME
             return res == ContentDialogResult.Primary;
         }
 
-        private async void OnCheckUpdateClick(object sender, RoutedEventArgs e)
-        {
-            ViewModel.ShowStatus(ViewModel.Loc["update_checking"], "Informational");
-            var res = await UpdateService.CheckForUpdatesAsync();
-
-            if (res.HasUpdate)
-            {
-                var updateDlg = new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = ViewModel.Loc["update_title"],
-                    Content = $"{ViewModel.Loc["update_available", res.LatestVersion]}\n\n{res.ReleaseNotes}",
-                    PrimaryButtonText = ViewModel.Loc["update_btn_now"],
-                    CloseButtonText = ViewModel.Loc["update_btn_later"],
-                    DefaultButton = ContentDialogButton.Primary
-                };
-
-                if (await updateDlg.ShowAsync() == ContentDialogResult.Primary)
-                {
-                    try
-                    {
-                        Process.Start(new ProcessStartInfo(res.DownloadUrl) { UseShellExecute = true });
-                    }
-                    catch { }
-                }
-            }
-            else if (!string.IsNullOrEmpty(res.ErrorMessage))
-            {
-                ViewModel.ShowStatus(res.ErrorMessage, "Error");
-            }
-            else
-            {
-                ViewModel.ShowStatus(ViewModel.Loc["update_latest", res.CurrentVersion], "Success");
-            }
-        }
-
         private void OnThemeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ThemeComboBox.SelectedItem is ComboBoxItem item && item.Tag is string themeTag)
@@ -534,39 +501,30 @@ namespace AutoIME
             ChkAutoStart.IsChecked = ViewModel.Settings.AutoStart;
         }
 
-        private void OnTrayGithubClicked(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Process.Start(new ProcessStartInfo("https://github.com/kyuuseiryuu/AutoIME") { UseShellExecute = true });
-            }
-            catch { }
-        }
-
-        private void OnTrayCheckUpdateClicked(object sender, RoutedEventArgs e)
-        {
-            OnTrayOpenClicked(sender, e);
-            OnCheckUpdateClick(sender, e);
-        }
-
         private void OnTrayRestartClicked(object sender, RoutedEventArgs e)
         {
             _isExplicitExit = true;
+            try { WindowWatcherService.Instance.Stop(); } catch { }
+            try { _hotkeyService.Cleanup(); } catch { }
+            try { TrayIcon?.Dispose(); } catch { }
+            App.ReleaseSingleInstanceMutex();
+
             string? exe = Environment.ProcessPath;
             if (!string.IsNullOrEmpty(exe))
             {
                 Process.Start(new ProcessStartInfo(exe) { UseShellExecute = true });
             }
-            Application.Current.Exit();
+            Environment.Exit(0);
         }
 
         private void OnTrayExitClicked(object sender, RoutedEventArgs e)
         {
             _isExplicitExit = true;
-            WindowWatcherService.Instance.Stop();
-            _hotkeyService.Cleanup();
-            TrayIcon.Dispose();
-            Application.Current.Exit();
+            try { WindowWatcherService.Instance.Stop(); } catch { }
+            try { _hotkeyService.Cleanup(); } catch { }
+            try { TrayIcon?.Dispose(); } catch { }
+            App.ReleaseSingleInstanceMutex();
+            Environment.Exit(0);
         }
     }
 }

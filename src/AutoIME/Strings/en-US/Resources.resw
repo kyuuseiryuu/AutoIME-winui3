@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="app_title" xml:space="preserve">
+    <value>AutoIME - Input Method Auto Switcher Configuration</value>
+  </data>
+  <data name="header_title" xml:space="preserve">
+    <value>AutoIME Automatic Input Method Switcher</value>
+  </data>
+  <data name="header_desc" xml:space="preserve">
+    <value>Tabs below correspond to installed system IMEs. Add applications to a panel to automatically switch to that IME when activated.</value>
+  </data>
+  <data name="lang_label" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="hotkey_label" xml:space="preserve">
+    <value>Hotkey:</value>
+  </data>
+  <data name="hotkey_updated" xml:space="preserve">
+    <value>Hotkey updated to: {1}</value>
+  </data>
+  <data name="hotkey_failed" xml:space="preserve">
+    <value>Failed to register hotkey ({1}): {2}</value>
+  </data>
+  <data name="ime_info" xml:space="preserve">
+    <value>IME: {1} (LangID: 0x{2:X4})  |  Configured: {3} apps</value>
+  </data>
+  <data name="btn_capture" xml:space="preserve">
+    <value>🎯 Capture Window</value>
+  </data>
+  <data name="btn_browse" xml:space="preserve">
+    <value>📁 Browse EXE</value>
+  </data>
+  <data name="btn_manual" xml:space="preserve">
+    <value>➕ Add Manual</value>
+  </data>
+  <data name="col_num" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="col_exe" xml:space="preserve">
+    <value>Process Name (EXE)</value>
+  </data>
+  <data name="col_desc" xml:space="preserve">
+    <value>Description / Window Title</value>
+  </data>
+  <data name="col_action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="btn_delete" xml:space="preserve">
+    <value>❌ Delete Selected</value>
+  </data>
+  <data name="btn_clear" xml:space="preserve">
+    <value>🗑️ Clear Tab</value>
+  </data>
+  <data name="chk_debug" xml:space="preserve">
+    <value>Enable ToolTip hints</value>
+  </data>
+  <data name="chk_startup" xml:space="preserve">
+    <value>Run on Windows Startup</value>
+  </data>
+  <data name="btn_refresh_ime" xml:space="preserve">
+    <value>🔄 Refresh IMEs</value>
+  </data>
+  <data name="btn_save" xml:space="preserve">
+    <value>💾 Save &amp; Apply</value>
+  </data>
+  <data name="btn_minimize" xml:space="preserve">
+    <value>Minimize to Tray</value>
+  </data>
+  <data name="search_placeholder" xml:space="preserve">
+    <value>Search configured processes or remarks...</value>
+  </data>
+  <data name="selected_count" xml:space="preserve">
+    <value>Selected {1} items</value>
+  </data>
+  <data name="hk_dialog_title" xml:space="preserve">
+    <value>⌨️ Set Activation Hotkey</value>
+  </data>
+  <data name="hk_dialog_prompt" xml:space="preserve">
+    <value>Press the new key combination directly on your keyboard:</value>
+  </data>
+  <data name="hk_dialog_help" xml:space="preserve">
+    <value>Supports: Ctrl, Alt, Shift, Win + any Key&#x0a;Click [Confirm] to apply and save</value>
+  </data>
+  <data name="hk_dialog_confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="hk_dialog_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="hk_dialog_reset" xml:space="preserve">
+    <value>Reset Default (Ctrl+Alt+I)</value>
+  </data>
+  <data name="hk_dialog_empty" xml:space="preserve">
+    <value>Please press a valid key combination first!</value>
+  </data>
+  <data name="save_success" xml:space="preserve">
+    <value>✅ Configuration saved and applied immediately!</value>
+  </data>
+  <data name="del_success" xml:space="preserve">
+    <value>Selected application(s) removed.</value>
+  </data>
+  <data name="del_select_hint" xml:space="preserve">
+    <value>Please select a row in the list first!</value>
+  </data>
+  <data name="clear_confirm" xml:space="preserve">
+    <value>Are you sure you want to clear all configured apps for [{1}]?</value>
+  </data>
+  <data name="clear_title" xml:space="preserve">
+    <value>Confirm Clear</value>
+  </data>
+  <data name="browse_title" xml:space="preserve">
+    <value>Select Executable File</value>
+  </data>
+  <data name="manual_prompt" xml:space="preserve">
+    <value>Enter process executable name (e.g. notepad.exe or code.exe):</value>
+  </data>
+  <data name="manual_title" xml:space="preserve">
+    <value>Add Application Manually</value>
+  </data>
+  <data name="manual_exe_placeholder" xml:space="preserve">
+    <value>e.g. code.exe</value>
+  </data>
+  <data name="manual_remark_label" xml:space="preserve">
+    <value>Remark / Description (Optional):</value>
+  </data>
+  <data name="manual_remark_placeholder" xml:space="preserve">
+    <value>e.g. Visual Studio Code</value>
+  </data>
+  <data name="manual_default_remark" xml:space="preserve">
+    <value>Manually added</value>
+  </data>
+  <data name="already_in_tab" xml:space="preserve">
+    <value>Application [{1}] is already configured for [{2}]!</value>
+  </data>
+  <data name="conflict_prompt" xml:space="preserve">
+    <value>Application [{1}] is currently assigned to [{2}].&#x0a;&#x0a;Do you want to move it to [{3}]?</value>
+  </data>
+  <data name="conflict_title" xml:space="preserve">
+    <value>Rule Conflict</value>
+  </data>
+  <data name="add_success" xml:space="preserve">
+    <value>✅ Successfully bound: {1} -> {2}</value>
+  </data>
+  <data name="capture_mode_title" xml:space="preserve">
+    <value>🎯 [AutoIME Window Capture Mode]</value>
+  </data>
+  <data name="capture_target_ime" xml:space="preserve">
+    <value>Target IME: {1}</value>
+  </data>
+  <data name="capture_hover_proc" xml:space="preserve">
+    <value>Hovered Process: {1}</value>
+  </data>
+  <data name="capture_hover_title" xml:space="preserve">
+    <value>Window Title: {1}</value>
+  </data>
+  <data name="capture_no_title" xml:space="preserve">
+    <value>(No Title)</value>
+  </data>
+  <data name="capture_hint_confirm" xml:space="preserve">
+    <value>👉 Action: [Left Click] or press [Space/Enter/F8] to capture</value>
+  </data>
+  <data name="capture_hint_cancel" xml:space="preserve">
+    <value>👉 Cancel: Press [ESC] to exit</value>
+  </data>
+  <data name="capture_scanning" xml:space="preserve">
+    <value>🎯 [Capturing] Point at target window and click (Press ESC to cancel)</value>
+  </data>
+  <data name="capture_invalid" xml:space="preserve">
+    <value>Could not get a valid target window!</value>
+  </data>
+  <data name="capture_self_window" xml:space="preserve">
+    <value>You selected AutoIME itself. Capture cancelled.</value>
+  </data>
+  <data name="capture_failed_proc" xml:space="preserve">
+    <value>Could not read process name for this window!</value>
+  </data>
+  <data name="capture_failed_title" xml:space="preserve">
+    <value>Capture Failed</value>
+  </data>
+  <data name="capture_cancelled" xml:space="preserve">
+    <value>Window capture cancelled.</value>
+  </data>
+  <data name="startup_enabled" xml:space="preserve">
+    <value>Launch on startup enabled</value>
+  </data>
+  <data name="startup_disabled" xml:space="preserve">
+    <value>Launch on startup disabled</value>
+  </data>
+  <data name="startup_failed" xml:space="preserve">
+    <value>Failed to configure startup: {1}</value>
+  </data>
+  <data name="ime_reloaded" xml:space="preserve">
+    <value>IME list reloaded successfully!</value>
+  </data>
+  <data name="tray_open_config" xml:space="preserve">
+    <value>⚙️ Open Settings ({1})</value>
+  </data>
+  <data name="tray_reload_config" xml:space="preserve">
+    <value>🔄 Reload Config</value>
+  </data>
+  <data name="tray_toggle_debug" xml:space="preserve">
+    <value>💬 Toggle ToolTip Hints</value>
+  </data>
+  <data name="tray_toggle_startup" xml:space="preserve">
+    <value>🚀 Run on Startup</value>
+  </data>
+  <data name="tray_restart" xml:space="preserve">
+    <value>⚡ Restart AutoIME</value>
+  </data>
+  <data name="tray_exit" xml:space="preserve">
+    <value>❌ Exit AutoIME</value>
+  </data>
+  <data name="tray_tip_minimized" xml:space="preserve">
+    <value>AutoIME is minimized to tray and running in background.&#x0a;Double-click tray icon or press hotkey to open settings.</value>
+  </data>
+  <data name="debug_enabled" xml:space="preserve">
+    <value>ToolTip hints enabled</value>
+  </data>
+  <data name="debug_disabled" xml:space="preserve">
+    <value>ToolTip hints disabled</value>
+  </data>
+  <data name="desc_dev_tool" xml:space="preserve">
+    <value>Development Tool</value>
+  </data>
+  <data name="desc_chat_tool" xml:space="preserve">
+    <value>Communication App</value>
+  </data>
+  <data name="theme_system" xml:space="preserve">
+    <value>💻 Follow System</value>
+  </data>
+  <data name="theme_light" xml:space="preserve">
+    <value>☀️ Light</value>
+  </data>
+  <data name="theme_dark" xml:space="preserve">
+    <value>🌙 Dark</value>
+  </data>
+</root>

@@ -5,9 +5,6 @@ namespace AutoIME.Models
     public partial class AppSettings : ObservableObject
     {
         [ObservableProperty]
-        private bool _debugMode = false;
-
-        [ObservableProperty]
         private string _language = "zh";
 
         [ObservableProperty]

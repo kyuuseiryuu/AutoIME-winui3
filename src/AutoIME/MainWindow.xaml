@@ -21,7 +21,6 @@
                     <MenuFlyoutItem x:Name="TrayOpenItem" Text="⚙️ 打开配置界面" Command="{x:Bind OpenWindowCommand}" Click="OnTrayOpenClick" />
                     <MenuFlyoutItem x:Name="TrayReloadItem" Text="🔄 重新加载配置" Command="{x:Bind ReloadCommand}" Click="OnTrayReloadClicked" />
                     <MenuFlyoutSeparator />
-                    <ToggleMenuFlyoutItem x:Name="TrayDebugItem" Text="💬 切换悬浮提示" Command="{x:Bind ToggleDebugCommand}" Click="OnTrayToggleDebugClicked" />
                     <ToggleMenuFlyoutItem x:Name="TrayStartupItem" Text="🚀 开机自启动" Command="{x:Bind ToggleStartupCommand}" Click="OnTrayToggleStartupClicked" />
                     <MenuFlyoutSeparator />
                     <MenuFlyoutItem x:Name="TrayRestartItem" Text="⚡ 重启 AutoIME" Command="{x:Bind RestartCommand}" Click="OnTrayRestartClicked" />
@@ -342,12 +341,6 @@
                             <TextBlock Text="{x:Bind ViewModel.FormattedHotkey, Mode=OneWay}" FontWeight="Medium" />
                         </StackPanel>
                     </Button>
-
-                    <CheckBox x:Name="ChkDebugMode"
-                              Content="启用悬浮提示 (ToolTip)"
-                              IsChecked="{x:Bind ViewModel.Settings.DebugMode, Mode=TwoWay}"
-                              Click="OnDebugModeClicked"
-                              VerticalAlignment="Center" />
 
                     <CheckBox x:Name="ChkAutoStart"
                               Content="开机自启动"

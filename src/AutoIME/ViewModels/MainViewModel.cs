@@ -334,13 +334,6 @@ namespace AutoIME.ViewModels
             AutoSaveConfig();
         }
 
-        public void ToggleDebugMode(bool enabled)
-        {
-            Settings.DebugMode = enabled;
-            AutoSaveConfig();
-            ShowStatus(enabled ? Loc["debug_enabled"] : Loc["debug_disabled"], "Informational");
-        }
-
         public void ToggleAutoStart(bool enabled)
         {
             Settings.AutoStart = enabled;

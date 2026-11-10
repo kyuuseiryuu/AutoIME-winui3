@@ -22,7 +22,6 @@ namespace AutoIME
         public MainViewModel ViewModel { get; } = new();
         public CommunityToolkit.Mvvm.Input.IRelayCommand OpenWindowCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(() => OnTrayOpenClicked(null, null));
         public CommunityToolkit.Mvvm.Input.IRelayCommand ReloadCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoReload);
-        public CommunityToolkit.Mvvm.Input.IRelayCommand ToggleDebugCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoToggleDebug);
         public CommunityToolkit.Mvvm.Input.IRelayCommand ToggleStartupCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoToggleStartup);
         public CommunityToolkit.Mvvm.Input.IRelayCommand RestartCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoRestart);
         public CommunityToolkit.Mvvm.Input.IRelayCommand ExitCommand => new CommunityToolkit.Mvvm.Input.RelayCommand(DoExit);
@@ -41,7 +40,6 @@ namespace AutoIME
         private readonly IntPtr _hwnd;
         private readonly AppWindow _appWindow;
         private readonly HotkeyService _hotkeyService = new();
-        private ToolTipFloatingWindow? _tooltipWindow;
         private CaptureOverlayWindow? _captureOverlay;
         private bool _isExplicitExit = false;
 
@@ -108,8 +106,6 @@ namespace AutoIME
             catch (Exception ex) { Log($"Icon error: {ex.Message}"); }
 
             // Initialize Floating Windows
-            Log("Creating ToolTipFloatingWindow");
-            _tooltipWindow = new ToolTipFloatingWindow();
             Log("Creating CaptureOverlayWindow");
             _captureOverlay = new CaptureOverlayWindow();
             Log("Floating windows created");
@@ -123,7 +119,6 @@ namespace AutoIME
 
             // Setup Window Watcher
             Log("Initializing WindowWatcherService");
-            WindowWatcherService.Instance.WindowSwitched += OnWindowSwitched;
             WindowWatcherService.Instance.Start();
             Log("WindowWatcherService started");
 
@@ -167,7 +162,6 @@ namespace AutoIME
             }
 
             // Sync tray checks
-            TrayDebugItem.IsChecked = ViewModel.Settings.DebugMode;
             TrayStartupItem.IsChecked = StartupService.IsAutoStartEnabled();
         }
 
@@ -188,7 +182,6 @@ namespace AutoIME
             TxtBtnDeleteSelected.Text = loc["btn_delete"].Replace("❌ ", "");
             TxtBtnClearTab.Text = loc["btn_clear"].Replace("🗑️ ", "");
 
-            ChkDebugMode.Content = loc["chk_debug"];
             ChkAutoStart.Content = loc["chk_startup"];
             TxtBtnRefreshIme.Text = loc["btn_refresh_ime"].Replace("🔄 ", "");
 
@@ -198,7 +191,6 @@ namespace AutoIME
 
             TrayOpenItem.Text = loc["tray_open_config", ViewModel.FormattedHotkey];
             TrayReloadItem.Text = loc["tray_reload_config"];
-            TrayDebugItem.Text = loc["tray_toggle_debug"];
             TrayStartupItem.Text = loc["tray_toggle_startup"];
             TrayRestartItem.Text = loc["tray_restart"];
             TrayExitItem.Text = loc["tray_exit"];
@@ -245,22 +237,6 @@ namespace AutoIME
                     Win32Native.SetForegroundWindow(_hwnd);
                 }
             });
-        }
-
-        private void OnWindowSwitched(object? sender, WindowSwitchEventArgs e)
-        {
-            if (ViewModel.Settings.DebugMode && _tooltipWindow != null)
-            {
-                string title = e.Matched
-                    ? $"【命中规则】{e.ProcessName}"
-                    : $"【未配置】{e.ProcessName}";
-
-                string sub = e.Matched
-                    ? $"切换至: {e.TargetImeName}"
-                    : (string.IsNullOrEmpty(e.WindowTitle) ? "无窗口标题" : e.WindowTitle);
-
-                _tooltipWindow.ShowTip(title, sub, e.Matched);
-            }
         }
 
         // ==============================================================================
@@ -428,12 +404,6 @@ namespace AutoIME
             }
         }
 
-        private void OnDebugModeClicked(object sender, RoutedEventArgs e)
-        {
-            ViewModel.ToggleDebugMode(ChkDebugMode.IsChecked == true);
-            TrayDebugItem.IsChecked = ViewModel.Settings.DebugMode;
-        }
-
         private void OnAutoStartClicked(object sender, RoutedEventArgs e)
         {
             ViewModel.ToggleAutoStart(ChkAutoStart.IsChecked == true);
@@ -507,17 +477,6 @@ namespace AutoIME
             {
                 ViewModel.InitializeData();
                 ViewModel.ShowStatus(ViewModel.Loc["save_success"], "Success");
-            });
-        }
-
-        private void OnTrayToggleDebugClicked(object sender, RoutedEventArgs e) => DoToggleDebug();
-        private void DoToggleDebug()
-        {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                ViewModel.ToggleDebugMode(!ViewModel.Settings.DebugMode);
-                TrayDebugItem.IsChecked = ViewModel.Settings.DebugMode;
-                ChkDebugMode.IsChecked = ViewModel.Settings.DebugMode;
             });
         }
 

@@ -36,7 +36,7 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             VER="${{ github.ref_name }}"
           else
-            VER="v1.0.3-${SHORT_SHA}"
+            VER="v1.0.4-${SHORT_SHA}"
           fi
           echo "version=$VER" >> $GITHUB_OUTPUT
           echo "Resolved Version: $VER"

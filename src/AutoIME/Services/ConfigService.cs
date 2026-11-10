@@ -93,9 +93,7 @@ namespace AutoIME.Services
 
                     if (currentSection.Equals("Settings", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (key.Equals("DebugMode", StringComparison.OrdinalIgnoreCase))
-                            settings.DebugMode = val == "1" || val.Equals("true", StringComparison.OrdinalIgnoreCase);
-                        else if (key.Equals("Language", StringComparison.OrdinalIgnoreCase))
+                        if (key.Equals("Language", StringComparison.OrdinalIgnoreCase))
                             settings.Language = val;
                         else if (key.Equals("Hotkey", StringComparison.OrdinalIgnoreCase))
                             settings.Hotkey = val;
@@ -174,7 +172,6 @@ namespace AutoIME.Services
                 sb.AppendLine("; ==============================================================================");
                 sb.AppendLine();
                 sb.AppendLine("[Settings]");
-                sb.AppendLine($"DebugMode={(settings.DebugMode ? "1" : "0")}");
                 sb.AppendLine($"Language={settings.Language}");
                 sb.AppendLine($"Hotkey={settings.Hotkey}");
                 sb.AppendLine($"Theme={settings.Theme}");

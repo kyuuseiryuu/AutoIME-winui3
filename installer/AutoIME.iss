@@ -1,6 +1,6 @@
 ; Script generated for AutoIME WinUI 3 Installer
 #define MyAppName "AutoIME"
-#define MyAppVersion "1.0.2"
+#define MyAppVersion "1.0.3"
 #define MyAppPublisher "邱成龍"
 #define MyAppExeName "AutoIME.exe"
 

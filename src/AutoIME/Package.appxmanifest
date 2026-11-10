@@ -11,7 +11,7 @@
   <Identity
     Name="FEFE369C.AutoIME"
     Publisher="CN=8FBE9AE2-DEFD-4655-8015-EAAE068A82F9"
-    Version="1.0.2.0" />
+    Version="1.0.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="C7BBFCEE-38ED-4E30-AD5D-10B31455BC49" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

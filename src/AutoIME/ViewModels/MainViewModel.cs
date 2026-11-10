@@ -200,6 +200,7 @@ namespace AutoIME.ViewModels
                 }
             });
 
+            AutoSaveConfig();
             ShowStatus(Loc["add_success", exe, SelectedIme.DisplayName], "Success");
             return true;
         }
@@ -212,6 +213,8 @@ namespace AutoIME.ViewModels
                 SelectedIme.Apps.Remove(rule);
                 UpdateFilteredApps();
                 UpdateSelectionCount();
+                AutoSaveConfig();
+                ShowStatus(Loc["del_success"], "Success");
             }
         }
 
@@ -235,6 +238,7 @@ namespace AutoIME.ViewModels
 
             UpdateFilteredApps();
             UpdateSelectionCount();
+            AutoSaveConfig();
             ShowStatus(Loc["del_success"], "Success");
         }
 
@@ -247,6 +251,8 @@ namespace AutoIME.ViewModels
             SelectedIme.Apps.Clear();
             UpdateFilteredApps();
             UpdateSelectionCount();
+            AutoSaveConfig();
+            ShowStatus(Loc["del_success"], "Success");
         }
 
         [RelayCommand]
@@ -263,11 +269,16 @@ namespace AutoIME.ViewModels
             UpdateSelectionCount();
         }
 
-        [RelayCommand]
-        public void SaveConfig()
+        public void AutoSaveConfig()
         {
             ConfigService.Instance.SaveConfig(Settings, SystemImes);
             WindowWatcherService.Instance.UpdateRules(SystemImes);
+        }
+
+        [RelayCommand]
+        public void SaveConfig()
+        {
+            AutoSaveConfig();
             ShowStatus(Loc["save_success"], "Success");
         }
 
@@ -298,6 +309,7 @@ namespace AutoIME.ViewModels
 
             WindowWatcherService.Instance.UpdateRules(SystemImes);
             _ = LoadAllIconsAsync();
+            AutoSaveConfig();
 
             ShowStatus(Loc["ime_reloaded"], "Success");
         }
@@ -306,26 +318,26 @@ namespace AutoIME.ViewModels
         {
             Settings.Hotkey = newAhkHk;
             FormattedHotkey = HotkeyService.FormatDisplay(newAhkHk);
-            SaveConfig();
+            AutoSaveConfig();
         }
 
         public void UpdateLanguage(string lang)
         {
             Settings.Language = lang;
             Loc.CurrentLanguage = lang;
-            SaveConfig();
+            AutoSaveConfig();
         }
 
         public void UpdateTheme(string theme)
         {
             Settings.Theme = theme;
-            SaveConfig();
+            AutoSaveConfig();
         }
 
         public void ToggleDebugMode(bool enabled)
         {
             Settings.DebugMode = enabled;
-            SaveConfig();
+            AutoSaveConfig();
             ShowStatus(enabled ? Loc["debug_enabled"] : Loc["debug_disabled"], "Informational");
         }
 
@@ -333,6 +345,7 @@ namespace AutoIME.ViewModels
         {
             Settings.AutoStart = enabled;
             bool success = StartupService.SetAutoStart(enabled);
+            AutoSaveConfig();
             if (success)
             {
                 ShowStatus(enabled ? Loc["startup_enabled"] : Loc["startup_disabled"], "Success");

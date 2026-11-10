@@ -191,7 +191,6 @@ namespace AutoIME
             ChkDebugMode.Content = loc["chk_debug"];
             ChkAutoStart.Content = loc["chk_startup"];
             TxtBtnRefreshIme.Text = loc["btn_refresh_ime"].Replace("🔄 ", "");
-            TxtBtnSaveConfig.Text = loc["btn_save"].Replace("💾 ", "");
 
             ThemeItemSystem.Content = loc["theme_system"];
             ThemeItemLight.Content = loc["theme_light"];
@@ -444,11 +443,6 @@ namespace AutoIME
         private void OnRefreshImeClick(object sender, RoutedEventArgs e)
         {
             ViewModel.RefreshImesCommand.Execute(null);
-        }
-
-        private void OnSaveConfigClick(object sender, RoutedEventArgs e)
-        {
-            ViewModel.SaveConfigCommand.Execute(null);
         }
 
         private async Task<bool> OnConflictConfirmRequestedAsync(string title, string prompt)

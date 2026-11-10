@@ -364,15 +364,6 @@
                             <TextBlock x:Name="TxtBtnRefreshIme" Text="刷新输入法" />
                         </StackPanel>
                     </Button>
-
-                    <Button x:Name="BtnSaveConfig"
-                            Style="{StaticResource AccentButtonStyle}"
-                            Click="OnSaveConfigClick">
-                        <StackPanel Orientation="Horizontal" Spacing="6">
-                            <TextBlock Text="💾" />
-                            <TextBlock x:Name="TxtBtnSaveConfig" Text="保存并应用" />
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
             </Grid>
         </Grid>

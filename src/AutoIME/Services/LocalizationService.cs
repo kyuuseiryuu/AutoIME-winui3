@@ -341,8 +341,18 @@ namespace AutoIME.Services
         {
             string? val = null;
 
-            // 1. Try Windows App SDK MRT Core (PRI / .resw)
-            if (_resourceMap != null && _resourceContext != null)
+            // 1. Always prioritize internal dictionary matching user-selected language
+            var lang = CurrentLanguage;
+            if (string.IsNullOrEmpty(lang) || !_translations.ContainsKey(lang))
+                lang = "zh";
+
+            if (_translations.TryGetValue(lang, out var dict) && dict.TryGetValue(key, out var localVal) && !string.IsNullOrEmpty(localVal))
+            {
+                val = localVal;
+            }
+
+            // 2. Fallback to Windows App SDK MRT Core (PRI / .resw)
+            if (string.IsNullOrEmpty(val) && _resourceMap != null && _resourceContext != null)
             {
                 try
                 {
@@ -366,24 +376,16 @@ namespace AutoIME.Services
                 }
             }
 
-            // 2. Fallback to internal dictionary if PRI didn't return value
+            // 3. Fallback to English dictionary or raw key
             if (string.IsNullOrEmpty(val))
             {
-                var lang = CurrentLanguage;
-                if (!_translations.ContainsKey(lang))
-                    lang = "en";
-
-                var dict = _translations[lang];
-                if (!dict.TryGetValue(key, out val))
-                {
-                    if (_translations["en"].TryGetValue(key, out var enVal))
-                        val = enVal;
-                    else
-                        val = key;
-                }
+                if (_translations["en"].TryGetValue(key, out var enVal))
+                    val = enVal;
+                else
+                    val = key;
             }
 
-            // 3. Format placeholders {1}, {2}...
+            // 4. Format placeholders {1}, {2}...
             if (args != null && args.Length > 0)
             {
                 for (int i = 0; i < args.Length; i++)

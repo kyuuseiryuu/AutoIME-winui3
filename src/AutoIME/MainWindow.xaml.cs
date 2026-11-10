@@ -49,8 +49,23 @@ namespace AutoIME
         {
             try
             {
-                System.IO.File.AppendAllText(System.IO.Path.Combine(AppContext.BaseDirectory, "startup.log"),
-                    $"[{DateTime.Now:HH:mm:ss.fff}] {msg}\r\n");
+                string dir = AppContext.BaseDirectory;
+                string target = System.IO.Path.Combine(dir, "startup.log");
+                try
+                {
+                    System.IO.File.AppendAllText(target, $"[{DateTime.Now:HH:mm:ss.fff}] {msg}\r\n");
+                    return;
+                }
+                catch
+                {
+                    string appDataDir = System.IO.Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        "AutoIME");
+                    if (!System.IO.Directory.Exists(appDataDir))
+                        System.IO.Directory.CreateDirectory(appDataDir);
+                    System.IO.File.AppendAllText(System.IO.Path.Combine(appDataDir, "startup.log"),
+                        $"[{DateTime.Now:HH:mm:ss.fff}] {msg}\r\n");
+                }
             }
             catch { }
         }
